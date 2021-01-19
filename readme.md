@@ -16,7 +16,8 @@ S3_BUCKET_KEY="your s3 bucket key"
 SECRET_KEY="your-random-secret-key"
 EOF
 ```
-##set AWS access key
+
+## Set AWS access key
 ```
 export AWS_ACCESS_KEY_ID="your aws access key id"
 export AWS_SECRET_ACCESS_KEY="your aws secret access key"

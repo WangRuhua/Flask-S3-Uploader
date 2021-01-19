@@ -1,16 +1,27 @@
-## Flask S3 Uploader
+# AWS S3 Uploader
+A tool upload file to AWS s3 bucket,python3.8
 
-This is a basic example showing how to use Flask, Flask-WTF and Boto
-to automatically upload user files to S3, bypassing storage on the server.
+## build Docker image
+1. `sh version.sh || exit 1`
+2. `docker build -t s3-uploader:dev . || exit 3`
 
-## Quick Start
 
-Update config.py with your Amazon details.
-
-## Other Notes
-
-The most efficient way of handling the downloads is likely to be
-just upload the file to the local webserver to enable a quick
-as possible response to the user, then adding the 'upload to S3'
-task to a message/task queue that runs in the background as the
-server can manage.
+## Set local environment variables
+```
+cat<<EOF>env.list
+FLASK_APP=app.py
+APP_SETTINGS=config.ProductionConfig
+[ export APP_SETTINGS=config.DevelopmentConfig"]
+S3_BUCKET_NAME="your s3 bucket name"
+S3_BUCKET_KEY="your s3 bucket key"
+SECRET_KEY="your-random-secret-key"
+EOF
+```
+##set AWS access key
+```
+export AWS_ACCESS_KEY_ID="your aws access key id"
+export AWS_SECRET_ACCESS_KEY="your aws secret access key"
+export AWS_SESSION_TOKEN="your aws session token"
+```
+## Run it on Docker
+1. `docker run --rm  -d   -p 5050:80 --env-file ./env.list  --name s3-uploader-dev s3-uploader:dev  || docker logs s3-uploader-dev`

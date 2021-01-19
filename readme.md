@@ -10,8 +10,7 @@ A tool upload file to AWS s3 bucket,python3.8
 ```
 cat<<EOF>env.list
 FLASK_APP=app.py
-APP_SETTINGS=config.ProductionConfig
-[ export APP_SETTINGS=config.DevelopmentConfig"]
+APP_SETTINGS=config.ProductionConfig｜config.DevelopmentConfig
 S3_BUCKET_NAME="your s3 bucket name"
 S3_BUCKET_KEY="your s3 bucket key"
 SECRET_KEY="your-random-secret-key"
